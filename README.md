@@ -1,6 +1,6 @@
-# Obsidian File Explorer Count
+# Obsidian File Explorer Markdown Titles
 
-## Brief Explanation
+## Descras
 
 - This plugin helps you to see the number of elements you have under all available folders within your file explorer. 
 

@@ -1,4 +1,4 @@
-import { updateCount } from 'folder-count';
+import { updateTitle } from 'folder-count';
 import FileExplorerNoteCount from 'main';
 import { getParentPath } from 'misc';
 import { App, debounce, TAbstractFile, Vault } from 'obsidian';
@@ -17,7 +17,7 @@ export class VaultHandler {
     }
 
     update = debounce(
-        () => updateCount(this.waitingList, this.plugin, this.vault),
+        () => updateTitle(this.waitingList, this.plugin, this.vault),
         500,
         true,
     );
