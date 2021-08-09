@@ -33,10 +33,4 @@ body:not(.oz-show-all-num)
     padding: 2px 0;
     /* background-color: var(--background-secondary-alt); */
     transition: opacity 100ms ease-in-out;
-    min-width: 0;
-    max-width: 80%;
-}
-
-.nav-file-title {
-    white-space: normal;
 }
