@@ -1,6 +1,5 @@
-import { updateTitle } from 'folder-count';
+import { updateTitle } from 'folder-title';
 import FileExplorerNoteCount from 'main';
-import { getParentPath } from 'misc';
 import { App, debounce, TAbstractFile, Vault } from 'obsidian';
 
 export class VaultHandler {
@@ -25,7 +24,7 @@ export class VaultHandler {
     handler = (...args: (string | TAbstractFile)[]) => {
         for (const arg of args) {
             const path = arg instanceof TAbstractFile ? arg.path : arg;
-            this.waitingList.push(getParentPath(path) ?? '/');
+            this.waitingList.push(path);
         }
         this.update();
     };

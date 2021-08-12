@@ -1,7 +1,6 @@
 import './styles/patch.css';
 
 import {
-    AbstractFileFilter,
     rootHiddenClass,
     showAllNumbersClass,
     withSubfolderClass,
@@ -9,7 +8,7 @@ import {
 import { FileExplorer, Plugin, TFile } from 'obsidian';
 import { VaultHandler } from 'vault-handler';
 
-import { setupTitle } from './folder-count';
+import { setupTitle } from './folder-title';
 import { DEFAULT_SETTINGS, FENoteCountSettingTab } from './settings';
 
 export default class FileExplorerNoteCount extends Plugin {
@@ -59,11 +58,11 @@ export default class FileExplorerNoteCount extends Plugin {
                 this.fileExplorer = leaves[0].view as FileExplorer;
             setupTitle(this, this.vaultHandler.vault, revert);
 
-            this.doHiddenRoot(revert);
+            // this.doHiddenRoot(revert);
             if (!revert) {
-                this.registerEvent(
-                    this.app.workspace.on('css-change', this.doHiddenRoot),
-                );
+                // this.registerEvent(
+                //     this.app.workspace.on('css-change', this.doHiddenRoot),
+                // );
                 this.vaultHandler.registerVaultEvent();
                 if (this.settings.showAllNumbers)
                     document.body.addClass('oz-show-all-num');

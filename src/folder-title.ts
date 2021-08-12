@@ -1,11 +1,8 @@
-import './styles/folder-count.css';
+import './styles/folder-title.css';
 
 import FileExplorerNoteCount from 'main';
 import {
-    AbstractFileFilter,
-    getParentPath,
     isFolder,
-    isParent,
     iterateItems,
     withSubfolderClass,
 } from 'misc';
@@ -22,6 +19,8 @@ export const setupTitle = (plugin: FileExplorerNoteCount, vault: Vault, revert =
 };
 
 export const setTitle = (item: FileItem, vault: Vault) => {
+    if (item.file.extension != "md") { return }
+
     vault.read(item.file).then(function (val) {
         const regex = /# (.+)\s*/;
         const match = regex.exec(val);
@@ -32,7 +31,7 @@ export const setTitle = (item: FileItem, vault: Vault) => {
             item.titleEl.dataset['name'] = undefined;
         }
     }).catch(error => {
-        console.log(`Error retrieving content of ${item.file}: ${error}`)
+        console.log(`Error retrieving content of ${item.file.path}: ${error}`)
     });
 }
 

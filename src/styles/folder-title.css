@@ -1,0 +1,16 @@
+
+.nav-file-title::after {
+    content: attr(data-name);
+    display: inline-block;
+    position: relative;
+    font-size: calc(100% * 0.8);
+    margin-right: 4px;
+    padding: 2px 0;
+    transition: opacity 100ms ease-in-out;
+    min-width: 0;
+    max-width: 80%;
+}
+
+.nav-file-title {
+    white-space: normal;
+}
