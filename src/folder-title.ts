@@ -23,7 +23,7 @@ export const setTitle = (item: FileItem, vault: Vault) => {
 
     let idMatch = item.file.basename.match(/([0-9]+|[a-z]+)/g)!
     if (idMatch) {
-        item
+        item.titleEl.dataset['zettel-indent'] = (idMatch.length - 1).toString()
     }
 
     vault.read(item.file).then(function (val) {
