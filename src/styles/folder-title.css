@@ -1,9 +1,9 @@
 
 .nav-file-title {
-    display: none;
+    content: attr(data-name);
 }
 
-.nav-file-title::after {
+/* .nav-file-title::after {
     content: attr(data-name);
     display: inline-block;
     position: relative;
@@ -12,7 +12,7 @@
     transition: opacity 100ms ease-in-out;
     min-width: 0;
     max-width: 80%;
-}
+} */
 
 .nav-file-title {
     white-space: normal;

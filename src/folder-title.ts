@@ -31,9 +31,10 @@ export const setTitle = (item: FileItem, vault: Vault) => {
         const match = regex.exec(val);
         if (match != null) {
             const name = match[1];
-            item.titleEl.dataset['name'] = name;
+            item.titleInnerEl.innerText = name;
+            // item.titleEl.dataset['name'] = name;
         } else {
-            item.titleEl.dataset['name'] = undefined;
+            // item.titleEl.dataset['name'] = undefined;
         }
     }).catch(error => {
         console.log(`Error retrieving content of ${item.file.path}: ${error}`)
