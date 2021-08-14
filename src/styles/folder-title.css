@@ -1,4 +1,8 @@
 
+.nav-file-title {
+    display: none;
+}
+
 .nav-file-title::after {
     content: attr(data-name);
     display: inline-block;
