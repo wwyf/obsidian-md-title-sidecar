@@ -1,19 +1,4 @@
 
 .nav-file-title {
-    content: attr(data-name);
-}
-
-/* .nav-file-title::after {
-    content: attr(data-name);
-    display: inline-block;
-    position: relative;
-    font-size: calc(100% * 0.8);
-    padding: calc(10px * 1) 4px;
-    transition: opacity 100ms ease-in-out;
-    min-width: 0;
-    max-width: 80%;
-} */
-
-.nav-file-title {
-    white-space: normal;
+    padding: calc(10px * attr(data-zettel-indent)) 4px;
 }
