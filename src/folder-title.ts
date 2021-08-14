@@ -24,20 +24,16 @@ export const setTitle = (item: FileItem, vault: Vault) => {
     let idMatch = item.file.basename.match(/([0-9]+|[a-z]+)/g)!
     if (idMatch) {
         let indentCount = (idMatch.length - 1)
-        let indentStr = (indentCount * 10).toString() + "px"
-        item.titleEl.style.textIndent = indentStr
+        let indentStr = (indentCount * 20).toString() + "px"
+        item.titleEl.style.marginLeft = indentStr
     }
 
     vault.read(item.file).then(function (val) {
-        const regex = /# (.+)\s*/;
-        const match = regex.exec(val);
+        const match = /# (.+)\s*/.exec(val);
         if (match != null) {
             const name = match[1];
             item.titleInnerEl.innerText = name;
-            // item.titleEl.dataset['name'] = name;
-        } else {
-            // item.titleEl.dataset['name'] = undefined;
-        }
+        } 
     }).catch(error => {
         console.log(`Error retrieving content of ${item.file.path}: ${error}`)
     });
