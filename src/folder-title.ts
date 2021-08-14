@@ -25,7 +25,7 @@ export const setTitle = (item: FileItem, vault: Vault) => {
     if (idMatch) {
         let indentCount = (idMatch.length - 1)
         let indentStr = (indentCount * 10).toString() + "px"
-        item.titleEl.dataset['zettelIndent'] = indentStr
+        item.titleEl.style.textIndent = indentStr
     }
 
     vault.read(item.file).then(function (val) {
