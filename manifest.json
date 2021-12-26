@@ -1,10 +1,10 @@
 {
-    "id": "md-title-inspector",
-    "name": "MD Title Inspector",
-    "version": "1.0.2",
+    "id": "md-title-sidecar",
+    "name": "MD Title Sidecar",
+    "version": "0.1.0",
     "minAppVersion": "0.11.13",
-    "description": "Shows the first markdown header of a note in the file explorer",
-    "author": "Dylan Elliott, Holden Xie",
-    "authorUrl": "https://github.com/dyldog",
+    "description": "Shows Markdown headers aside filenames in the file explorer",
+    "author": "Holden Xie",
+    "authorUrl": "https://github.com/hodlen",
     "isDesktopOnly": false
 }
