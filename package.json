@@ -1,6 +1,6 @@
 {
     "name": "file-explorer-note-titles",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Shows the first markdown header of a note in the file explorer",
     "main": "main.js",
     "scripts": {

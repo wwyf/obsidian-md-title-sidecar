@@ -1,7 +1,7 @@
 {
     "id": "md-title-sidecar",
     "name": "MD Title Sidecar",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "minAppVersion": "0.11.13",
     "description": "Shows Markdown headers aside filenames in the file explorer",
     "author": "Holden Xie",
