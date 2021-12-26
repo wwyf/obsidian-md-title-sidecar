@@ -1,4 +1,5 @@
 import './styles/patch.css';
+import './styles/folder-title.css';
 
 import {
     rootHiddenClass,
