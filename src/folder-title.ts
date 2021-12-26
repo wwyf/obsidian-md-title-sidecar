@@ -1,14 +1,14 @@
 import './styles/folder-title.css';
 
 import FileExplorerNoteCount from 'main';
-import {
-    isFolder,
-    iterateItems,
-    withSubfolderClass,
-} from 'misc';
-import { AFItem, FolderItem, FileItem, TFolder, TFile, Vault } from 'obsidian';
+import { isFolder, iterateItems, withSubfolderClass } from 'misc';
+import { AFItem, FileItem, FolderItem, TFile, TFolder, Vault } from 'obsidian';
 
-export const setupTitle = (plugin: FileExplorerNoteCount, vault: Vault, revert = false) => {
+export const setupTitle = (
+    plugin: FileExplorerNoteCount,
+    vault: Vault,
+    revert = false,
+) => {
     if (!plugin.fileExplorer) throw new Error('fileExplorer not found');
 
     iterateItems(plugin.fileExplorer.fileItems, (item: AFItem) => {
@@ -19,35 +19,42 @@ export const setupTitle = (plugin: FileExplorerNoteCount, vault: Vault, revert =
 };
 
 export const setTitle = (item: FileItem, vault: Vault) => {
-    if (item.file.extension != "md") { return }
-
-    let idMatch = item.file.basename.match(/([0-9]+|[a-z]+)/g)!
-    if (idMatch) {
-        let indentCount = (idMatch.length - 1)
-        let indentStr = (indentCount * 20).toString() + "px"
-        item.titleEl.style.marginLeft = indentStr
+    if (item.file.extension != 'md') {
+        return;
     }
 
-    vault.read(item.file).then(function (val) {
-        const match = /# (.+)\s*/.exec(val);
-        if (match != null) {
-            const contentTitle = match[1]
-            item.titleInnerEl.textContent = contentTitle
+    let idMatch = item.file.basename.match(/([0-9]+|[a-z]+)/g)!;
+    if (idMatch) {
+        let indentCount = idMatch.length - 1;
+        let indentStr = (indentCount * 20).toString() + 'px';
+        item.titleEl.style.marginLeft = indentStr;
+    }
 
-            const originalTitle = document.createElement('em')
-            originalTitle.className = 'folder-filename-title'
-            originalTitle.textContent = item.file.basename
-            item.titleInnerEl.append(originalTitle)
-        } 
-    }).catch(error => {
-        console.log(`Error retrieving content of ${item.file.path}: ${error}`)
-    });
-}
+    vault
+        .read(item.file)
+        .then(function (val) {
+            const match = /# (.+)\s*/.exec(val);
+            if (match != null) {
+                const contentTitle = match[1];
+                item.titleInnerEl.textContent = contentTitle;
+
+                const originalTitle = document.createElement('em');
+                originalTitle.className = 'folder-filename-title';
+                originalTitle.textContent = item.file.basename;
+                item.titleInnerEl.append(originalTitle);
+            }
+        })
+        .catch((error) => {
+            console.log(
+                `Error retrieving content of ${item.file.path}: ${error}`,
+            );
+        });
+};
 
 export const updateTitle = (
-    targetList: string[], 
-    plugin: FileExplorerNoteCount, 
-    vault: Vault
+    targetList: string[],
+    plugin: FileExplorerNoteCount,
+    vault: Vault,
 ) => {
     const { fileExplorer } = plugin;
     if (!fileExplorer) {

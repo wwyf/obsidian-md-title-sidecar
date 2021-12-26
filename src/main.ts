@@ -1,15 +1,11 @@
 import './styles/patch.css';
 import './styles/folder-title.css';
 
-import {
-    rootHiddenClass,
-    showAllNumbersClass,
-    withSubfolderClass,
-} from 'misc';
-import { FileExplorer, Plugin, TFile, App } from 'obsidian';
+import { GraphInteractor } from 'graph-interactor';
+import { rootHiddenClass, showAllNumbersClass, withSubfolderClass } from 'misc';
+import { App, FileExplorer, Plugin, TFile } from 'obsidian';
 import { WorkspaceLeaf } from 'obsidian';
 import { VaultHandler } from 'vault-handler';
-import { GraphInteractor } from 'graph-interactor';
 
 import { setupTitle } from './folder-title';
 import { DEFAULT_SETTINGS, FENoteCountSettingTab } from './settings';
@@ -20,7 +16,7 @@ export default class FileExplorerNoteCount extends Plugin {
     fileExplorer?: FileExplorer;
 
     vaultHandler = new VaultHandler(this);
-    graphInteractor = new GraphInteractor(this)
+    graphInteractor = new GraphInteractor(this);
 
     /** compatible with theme that hide root folder */
     doHiddenRoot = (revert = false) => {
@@ -32,8 +28,8 @@ export default class FileExplorerNoteCount extends Plugin {
         const styles = getComputedStyle(root.titleInnerEl);
         const setup = () => {
             const shouldHide =
-            styles.display === 'none' ||
-            styles.color === 'rgba(0, 0, 0, 0)';
+                styles.display === 'none' ||
+                styles.color === 'rgba(0, 0, 0, 0)';
             root.titleEl.toggleClass(rootHiddenClass, !revert && shouldHide);
         };
         if (styles.display !== '') setup();
@@ -55,7 +51,6 @@ export default class FileExplorerNoteCount extends Plugin {
 
     initialize = (revert = false) => {
         // this.graphInteractor.updateGraphNodes();
-   
 
         const leaves = this.app.workspace.getLeavesOfType('file-explorer');
         if (leaves.length > 1) console.error('more then one file-explorer');
@@ -70,36 +65,39 @@ export default class FileExplorerNoteCount extends Plugin {
                 // this.registerEvent(
                 //     this.app.workspace.on('css-change', this.doHiddenRoot),
                 // );
-                this.app.workspace.on('layout-change', () => setTimeout(() => this.graphInteractor.updateGraphNodes(), 1));
+                this.app.workspace.on('layout-change', () =>
+                    setTimeout(
+                        () => this.graphInteractor.updateGraphNodes(),
+                        1,
+                    ),
+                );
 
                 this.vaultHandler.registerVaultEvent();
                 if (this.settings.showAllNumbers)
                     document.body.addClass('oz-show-all-num');
             } else {
-                this.app.workspace.removeEventListener('layout-change', this)
+                this.app.workspace.removeEventListener('layout-change', this);
                 for (const el of document.getElementsByClassName(
                     withSubfolderClass,
-                    )) {
+                )) {
                     el.removeClass(withSubfolderClass);
+                }
+                document.body.removeClass(showAllNumbersClass);
             }
-            document.body.removeClass(showAllNumbersClass);
         }
+    };
+
+    async onload() {
+        console.log('loading FileExplorerNoteTitle');
+        this.app.workspace.onLayoutReady(this.initialize);
     }
-};
 
-async onload() {
-    console.log('loading FileExplorerNoteTitle');
-    this.app.workspace.onLayoutReady(this.initialize);
-}
+    onunload() {
+        console.log('unloading FileExplorerNoteTitle');
+        this.initialize(true);
+    }
 
-onunload() {
-    console.log('unloading FileExplorerNoteTitle');
-    this.initialize(true);
-}
-
-
-reloadTitle() {
-    setupTitle(this, this.vaultHandler.vault);
-}
-
+    reloadTitle() {
+        setupTitle(this, this.vaultHandler.vault);
+    }
 }
