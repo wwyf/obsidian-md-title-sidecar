@@ -31,6 +31,7 @@ export class VaultHandler {
 
     registerVaultEvent = () => {
         this.plugin.registerEvent(this.vault.on('create', this.handler));
+        this.plugin.registerEvent(this.vault.on('modify', this.handler));
         this.plugin.registerEvent(this.vault.on('rename', this.handler));
         this.plugin.registerEvent(this.vault.on('delete', this.handler));
     };

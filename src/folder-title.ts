@@ -2,7 +2,27 @@ import './styles/folder-title.css';
 
 import FileExplorerNoteCount from 'main';
 import { isFolder, iterateItems, withSubfolderClass } from 'misc';
-import { AFItem, FileItem, FolderItem, TFile, TFolder, Vault } from 'obsidian';
+import { AFItem, FileItem, Vault, parseYaml } from 'obsidian';
+
+const detectTitle = (content: string) => {
+    // First look into YAML Frontmatters
+    const yfmMatch = /---[\r\n]+(.+)[\r\n]+(---|\.\.\.)/s.exec(content)
+    if (yfmMatch !== null) {
+        const yamlStr = yfmMatch[1];
+        const yfm = parseYaml(yamlStr);
+        if (yfm.title) {
+            return yfm.title;
+        }
+    }
+
+    // Then look into H1
+    const h1Match = /# (.+)\s*/.exec(content);
+    if (h1Match != null) {
+        return h1Match[1];
+    }
+
+    return ''
+}
 
 export const setupTitle = (
     plugin: FileExplorerNoteCount,
@@ -32,10 +52,9 @@ export const setTitle = (item: FileItem, vault: Vault) => {
 
     vault
         .read(item.file)
-        .then(function (val) {
-            const match = /# (.+)\s*/.exec(val);
-            if (match != null) {
-                const contentTitle = match[1];
+        .then(function (content) {
+            const contentTitle = detectTitle(content);
+            if (contentTitle) {
                 item.titleInnerEl.textContent = contentTitle;
 
                 const originalTitle = document.createElement('em');
