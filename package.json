@@ -1,7 +1,7 @@
 {
-    "name": "file-explorer-note-titles",
+    "name": "md-title-sidecar",
     "version": "0.1.1",
-    "description": "Shows the first markdown header of a note in the file explorer",
+    "description": "Shows the title detected from content in the file explorer",
     "main": "main.js",
     "scripts": {
         "prettier": "prettier --write 'src/**/*.+(ts|tsx|json|html|css)'",
@@ -35,6 +35,7 @@
         "obsidian": "^0.12.0",
         "path-browserify": "^1.0.1",
         "prettier": "^2.3.0",
+        "release-it": "^14.11.8",
         "rollup": "^2.32.1",
         "rollup-plugin-import-css": "^2.0.1",
         "tslib": "^2.2.0",
