@@ -6,7 +6,7 @@ import { AFItem, FileItem, parseYaml, Vault } from 'obsidian';
 
 const detectTitle = (content: string) => {
     // First look into YAML Frontmatters
-    const yfmMatch = /---[\r\n]+(.+)[\r\n]+(---|\.\.\.)/s.exec(content);
+    const yfmMatch = /---[\r\n]+(.+?)[\r\n]+(---|\.\.\.)/s.exec(content);
     if (yfmMatch !== null) {
         const yamlStr = yfmMatch[1];
         const yfm = parseYaml(yamlStr);
