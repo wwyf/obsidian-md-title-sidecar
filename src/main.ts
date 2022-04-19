@@ -76,7 +76,7 @@ export default class FileExplorerNoteCount extends Plugin {
                 if (this.settings.showAllNumbers)
                     document.body.addClass('oz-show-all-num');
             } else {
-                this.app.workspace.removeEventListener('layout-change', this);
+                //this.app.workspace.removeEventListener('layout-change', this);
                 for (const el of document.getElementsByClassName(
                     withSubfolderClass,
                 )) {
