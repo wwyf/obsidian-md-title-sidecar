@@ -6,7 +6,7 @@ import { AFItem, FileItem, parseYaml, Vault } from 'obsidian';
 
 const detectTitle = (content: string) => {
     // First look into YAML Frontmatters
-    var return_string = "";
+    var return_string = '';
     const yfmMatch = /---[\r\n]+(.+?)[\r\n]+(---|\.\.\.)/s.exec(content);
     if (yfmMatch !== null) {
         const yamlStr = yfmMatch[1];
@@ -48,7 +48,7 @@ export const setTitle = (item: FileItem, vault: Vault) => {
         return;
     }
 
-    let isFilenameID =  item.file.basename.match(/^[0-9]*$/g)!;
+    let isFilenameID = item.file.basename.match(/^[0-9]*$/g)!;
     if (!isFilenameID) {
         return;
     }
@@ -73,11 +73,10 @@ export const setTitle = (item: FileItem, vault: Vault) => {
                 // originalTitle.className = 'filename-uid';
                 // originalTitle.textContent = item.file.basename;
 
-
                 const nextLine = document.createElement('br');
 
                 var newTitleDiv = document.createElement('div');
-                newTitleDiv.className = "filename-uid-with-title";
+                newTitleDiv.className = 'filename-uid-with-title';
                 // newTitleDiv.append(originalTitle);
                 // newTitleDiv.append(nextLine);
                 newTitleDiv.append(contentTitle);
@@ -87,7 +86,6 @@ export const setTitle = (item: FileItem, vault: Vault) => {
 
                 // item.titleInnerEl.prepend(nextLine);
                 // item.titleInnerEl.prepend(originalTitle);
-
             }
         })
         .catch((error) => {
