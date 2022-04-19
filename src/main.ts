@@ -61,29 +61,29 @@ export default class FileExplorerNoteCount extends Plugin {
             setupTitle(this, this.vaultHandler.vault, revert);
 
             // this.doHiddenRoot(revert);
-            if (!revert) {
-                // this.registerEvent(
-                //     this.app.workspace.on('css-change', this.doHiddenRoot),
-                // );
-                this.app.workspace.on('layout-change', () =>
-                    setTimeout(
-                        () => this.graphInteractor.updateGraphNodes(),
-                        1,
-                    ),
-                );
+            // if (!revert) {
+            //     // this.registerEvent(
+            //     //     this.app.workspace.on('css-change', this.doHiddenRoot),
+            //     // );
+            //     this.app.workspace.on('layout-change', () =>
+            //         setTimeout(
+            //             () => this.graphInteractor.updateGraphNodes(),
+            //             1,
+            //         ),
+            //     );
 
-                this.vaultHandler.registerVaultEvent();
-                if (this.settings.showAllNumbers)
-                    document.body.addClass('oz-show-all-num');
-            } else {
-                //this.app.workspace.removeEventListener('layout-change', this);
-                for (const el of document.getElementsByClassName(
-                    withSubfolderClass,
-                )) {
-                    el.removeClass(withSubfolderClass);
-                }
-                document.body.removeClass(showAllNumbersClass);
-            }
+            //     this.vaultHandler.registerVaultEvent();
+            //     if (this.settings.showAllNumbers)
+            //         document.body.addClass('oz-show-all-num');
+            // } else {
+            //     //this.app.workspace.removeEventListener('layout-change', this);
+            //     for (const el of document.getElementsByClassName(
+            //         withSubfolderClass,
+            //     )) {
+            //         el.removeClass(withSubfolderClass);
+            //     }
+            //     document.body.removeClass(showAllNumbersClass);
+            // }
         }
     };
 
