@@ -1,3 +1,5 @@
+## [0.1.4](https://github.com/wwyf/obsidian-md-title-sidecar/compare/0.1.3...0.1.4) (2022-04-19)
+
 ## [0.1.3](https://github.com/wwyf/obsidian-md-title-sidecar/compare/0.1.2...0.1.3) (2022-04-19)
 
 
