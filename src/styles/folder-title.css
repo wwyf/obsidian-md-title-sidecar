@@ -1,4 +1,15 @@
-em.folder-filename-title {
+em.filename-uid {
     opacity: 50%;
-    margin-left: 1em;
+    /* margin-left: 1em; */
+}
+
+
+div.filename-uid-with-title {
+    font-size: smaller;
+    opacity: 50%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
 }
