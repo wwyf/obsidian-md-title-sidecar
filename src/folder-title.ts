@@ -18,7 +18,7 @@ const detectTitle = (content: string) => {
 
     // Then look into H1
     const h1Match = /# (.+)\s*/.exec(content);
-    if (h1Match != null) {
+    if (h1Match != null && return_string == "") {
         return_string = h1Match[1];
     }
 
